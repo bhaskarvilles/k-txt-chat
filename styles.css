@@ -29,7 +29,7 @@ body {
     left: 0;
     z-index: 1;
     background: url('https://images.unsplash.com/photo-1451186859696-371d9477be93?crop=entropy&fit=crop&fm=jpg&h=975&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925') no-repeat center center;
-    background-size: cover; /* Ensures the background covers the entire area */
+    background-size: cover;
     filter: blur(80px);
     transform: scale(1.2);
 }
@@ -42,8 +42,8 @@ Chat
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%; /* Updated width for better responsiveness */
-    max-width: 500px; /* Maximum width */
+    width: 90%; 
+    max-width: 500px; 
     height: 80vh;
     max-height: 500px;
     z-index: 2;
@@ -113,17 +113,16 @@ Messages
     overflow-y: auto;
     position: relative;
     width: 100%;
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Column layout for messages */
+    display: flex;
+    flex-direction: column;
 }
 
 .messages-content {
     padding: 10px;
     display: flex;
-    flex-direction: column; /* Keep messages in a column */
+    flex-direction: column;
 }
 
-/* Animation for messages */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -137,38 +136,34 @@ Messages
 
 .message {
     padding: 6px 10px 7px;
-    border-radius: 10px; /* Simplified border-radius for both sides */
+    border-radius: 10px;
     background: rgba(0, 0, 0, .3);
     margin: 8px 0;
     font-size: 11px;
     line-height: 1.4;
     position: relative;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    animation: fadeIn 0.3s ease; /* Add fade-in animation */
-    max-width: 75%; /* Limit width for better readability */
+    animation: fadeIn 0.3s ease;
+    max-width: 75%;
 }
 
+/* Switched alignment: received messages are now on the right */
 /* Styles for received messages */
 .message.message-received {
     align-self: flex-start; /* Align to the left */
     margin-left: 35px; /* Margin for received messages */
+    background: rgba(0, 0, 0, .3); /* Background color for received messages */
+    text-align: left; /* Align text to the left */
+    color: #fff; /* Text color */
 }
 
 /* Styles for personal (sent) messages */
 .message.message-personal {
     align-self: flex-end; /* Align to the right */
-    background: linear-gradient(120deg, #248A52, #257287);
     margin-right: 35px; /* Margin for sent messages */
+    background: linear-gradient(120deg, #248A52, #257287); /* Background color for sent messages */
     text-align: right; /* Align text to the right */
-}
-
-.message.message-personal::before {
-    left: auto;
-    right: 0;
-    border-right: none;
-    border-left: 5px solid transparent;
-    border-top: 4px solid #257287;
-    bottom: -4px;
+    color: #fff; /* Text color */
 }
 
 .message .timestamp {
@@ -187,14 +182,50 @@ Messages
     border-right: 7px solid transparent;
 }
 
-/* Hover effect */
 .message:hover {
-    transform: scale(1.02); /* Slightly enlarge on hover */
-    transition: transform 0.2s; /* Smooth transition */
+    transform: scale(1.02);
+    transition: transform 0.2s;
 }
 
 .message:hover .timestamp {
-    color: rgba(255, 255, 255, .6); /* Brighter timestamp on hover */
+    color: rgba(255, 255, 255, .6);
+}
+
+/* Typing Effect */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    margin-left: 35px; /* Align with personal messages */
+}
+
+.typing-indicator span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 2px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: typingEffect 1s infinite alternate;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingEffect {
+    0% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
 }
 
 /*--------------------
@@ -240,53 +271,36 @@ Message Box
 }
 
 footer {
-    background-color: #282c34; /* Dark background color */
-    color: rgb(0, 211, 0); /* Text color */
-    padding: 10px; /* Padding around the text */
-    text-align: center; /* Center the text */
-    position: relative; /* Position relative for further positioning if needed */
-    bottom: 0; /* Stick to the bottom */
-    width: 100%; /* Full width */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* Optional shadow effect */
+    background-color: #282c34;
+    color: rgb(0, 211, 0);
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
 }
 
-note {
-    display: block; /* Make note a block element */
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
     body {
-        font-size: 10px; /* Smaller base font size on small screens */
+        font-size: 10px;
     }
-
     .chat {
-        width: 95%; /* Slightly narrower on smaller screens */
+        width: 95%;
     }
-
     .chat-title h1 {
-        font-size: 10px; /* Adjust title font size */
+        font-size: 10px;
     }
-
     .chat-title h2 {
-        font-size: 8px; /* Adjust subtitle font size */
+        font-size: 8px;
     }
-
     .message {
-        font-size: 9px; /* Adjust message font size */
+        font-size: 9px;
     }
-
     .message-input {
-        font-size: 10px; /* Adjust input font size */
+        font-size: 10px;
     }
-
     .message-submit {
-        font-size: 10px; /* Adjust submit button font size */
-    }
-}
-
-@media (min-width: 769px) {
-    footer {
-        font-size: 16px; /* Default font size on larger screens */
+        font-size: 10px;
     }
 }
